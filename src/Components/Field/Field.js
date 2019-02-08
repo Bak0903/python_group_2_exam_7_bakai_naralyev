@@ -4,7 +4,6 @@ import Box from './Box/Box.js';
 class Field extends Component {
 
     render () {
-        console.log(this.props.boxes);
         return (
             Object.values(this.props.boxes).map(
                 (box, i) => {
@@ -12,7 +11,7 @@ class Field extends Component {
                         <Box
                             key = {i}
                             currentBox = {box}
-                            onCheck = {this.props.onCheck}
+                            onBox = {() => {return this.props.onBox(box.boxId)}}
                         />
                     );
                 }
