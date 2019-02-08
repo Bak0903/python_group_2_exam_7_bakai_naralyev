@@ -4,13 +4,13 @@ class Box extends Component {
 
     render () {
         return (
-            <div
+            <button
                 className={this.props.currentBox.boxClass}
                 id={this.props.currentBox.id}
-                aria-disabled={this.props.currentBox.boxIsDisabled}
-                onClick={this.props.onCheck}
+                disabled={this.props.currentBox.boxIsDisabled}
+                onClick={this.props.onBox}
             >
-            </div>
+            </button>
         );
     }
 
