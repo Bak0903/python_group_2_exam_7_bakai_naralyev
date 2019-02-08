@@ -4,35 +4,22 @@
     height: 144px;
 }
 
-.clothedNotEmpty {
-    background: black;
+.box {
     display: inline-block;
     margin: 2px;
     width: 20px;
     height: 20px;
+    border: 0;
 }
 
-.clothedEmpty {
-    display: inline-block;
+.clothed {
     background: black;
-    margin: 2px;
-    width: 20px;
-    height: 20px;
 }
 
-.openEmpty {
-    display: inline-block;
+.open {
     background: white;
-    margin: 2px;
-    width: 20px;
-    height: 20px;
-
 }
 
-.openNotEmpty {
+.NotEmpty {
     background: red;
-    display: inline-block;
-    margin: 2px;
-    width: 20px;
-    height: 20px;
 }
