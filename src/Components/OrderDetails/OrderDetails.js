@@ -9,20 +9,20 @@ class OrderDetails extends Component {
         if (this.props.basket.length === 0) {
             return (
                 <div className={"order_details"}>
-                    <h3>Корзина</h3>
-                    <p className={"empty"}>Ваша корзина пустая.Кликните по еде в меню, чтобы добавить!</p>
+                    <h3 className={"title"}>Корзина:</h3>
+                    <p className={"empty"}>Пока здесь ничего нет...</p>
                 </div>);
         }
         else {
             return (
                 <div className={"order_details"}>
-                    <h3>Корзина</h3>
-                    <table>
+                    <h3 className={"title"}>Корзина:</h3>
+                    <table className={"table"}>
                         <tbody>
                         <tr>
                             <th></th>
-                            <th>Кол-во</th>
-                            <th>Сумма</th>
+                            <th className={"colum"}><span>Кол-во</span></th>
+                            <th className={"colum"}>Сумма</th>
                         </tr>
                         {
                             Object.values(this.props.basket).map(
@@ -33,18 +33,16 @@ class OrderDetails extends Component {
                                             name={item.name}
                                             price={item.price}
                                             count={item.count}
-                                            onDelete={() => this.props.onDeleteFood(i)}
+                                            onDelete={() => this.props.onDeleteFood(item.id, "removeOrDelete")}
                                         />
                                     );
                                 }
                             )
                         }
-                        <hr/>
-                        <tr className={"order_item"}>
-                            <td>Всего: {this.props.total_price} с.</td>
-                        </tr>
                         </tbody>
                     </table>
+                    <hr/>
+                    <span className={"summ"}>Всего: {this.props.total_price} с.</span>
                 </div>
             );
         }

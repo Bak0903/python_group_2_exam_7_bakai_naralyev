@@ -20,7 +20,7 @@ class AddItems extends Component {
                                         price={item.price}
                                         className={item.className}
                                         onClickEvent={() => {
-                                            return this.props.onAddFood(i)
+                                            return this.props.onAddFood(i, "add")
                                         }}
                                     />
                                 );

@@ -3,9 +3,6 @@ import './App.css';
 import AddItems from './Components/AddItems/AddItems';
 import OrderDetails from "./Components/OrderDetails/OrderDetails";
 
-// const TOTAL_PRICE = 0;
-//
-// const ITEMS=[];
 
 class App extends Component {
 
@@ -37,63 +34,78 @@ class App extends Component {
         };
     };
 
-  addFood = (id) => {
+
+  actionWithFood = (id, action) => {
     let orderDetails = this.state.orderDetails;
-    let food = "";
-    let foodId = this.state.orderDetails.findIndex(orderFood => {
-            return orderFood.id === id;
-        });
-    if (foodId < 0) {
-      food = this.state.items[id];
-      orderDetails.push(
-        {id: id, name: food.name, price: food.price, count: 1,}
-      );
-    }
-    else {
-      food = this.state.orderDetails[foodId];
-      console.log(food);
-      food.count = food.count + 1;
-      food.price = food.price + this.state.items[id].price;
-    }
-    let totalPrice = this.calculateTotalPrice();
+
+    if (action === 'add')
+      orderDetails = this.addFood(id, orderDetails);
+
+    else if (action === 'removeOrDelete')
+      orderDetails = this.removeOrDelete(id, orderDetails);
+
+    let totalPrice = this.calculateTotalPrice(orderDetails);
     this.setState({
             ...this.state,
             orderDetails,
             totalPrice
         }
     );
-    console.log(this.state)
   };
 
-  deleteFood = (id) => {
-    let orderDetails = this.state.orderDetails;
-    if (orderDetails[id].count > 1) {
-      let food = orderDetails[id];
+
+  addFood = (id, basket) => {
+    let food = "";
+    let foodId = basket.findIndex(orderFood => {
+            return orderFood.id === id;
+        });
+
+    if (foodId < 0) {
+      food = this.state.items[id];
+      basket.push(
+        {id: id, name: food.name, price: food.price, count: 1,}
+      );
+    }
+
+    else {
+      food = basket[foodId];
+      food.count = food.count + 1;
+      food.price = food.price + this.state.items[id].price;
+    }
+
+    return basket;
+  };
+
+
+  removeOrDelete = (id, basket) => {
+    console.log(id);
+    let foodId = basket.findIndex(orderFood => {
+            return orderFood.id === id;
+        });
+    console.log(foodId);
+    console.log(basket[foodId]);
+    if (basket[foodId].count > 1) {
+      let food = basket[foodId];
       food.count = food.count - 1;
       food.price = food.price - this.state.items[id].price;
     }
-    else {
-      orderDetails.splice(id, 1);
-    }
-    let totalPrice = this.calculateTotalPrice();
-    this.setState({
-        ...this.state,
-        orderDetails,
-        totalPrice
-        }
-    );
+
+    else
+      basket.splice(foodId, 1);
+
+    return basket;
   };
 
-  calculateTotalPrice = () => {
+  calculateTotalPrice = (basket) => {
     let totalPrice = 0;
-    console.log(totalPrice);
-    let orderFood = this.state.orderDetails;
-    for(var food in orderFood) {
-            totalPrice = totalPrice + orderFood[food].price;
-            console.log(totalPrice);
-        }
+
+    for(let food in basket)
+      if (basket.hasOwnProperty(food))
+        totalPrice = totalPrice + basket[food].price;
+
     return totalPrice;
   };
+
 
   render() {
     return (
@@ -101,11 +113,11 @@ class App extends Component {
         <OrderDetails
           total_price={this.state.totalPrice}
           basket={this.state.orderDetails}
-          onDeleteFood={this.deleteFood}
+          onDeleteFood={this.actionWithFood}
         />
         <AddItems
           menu={this.state.items}
-          onAddFood={this.addFood}
+          onAddFood={this.actionWithFood}
         />
       </div>
     );

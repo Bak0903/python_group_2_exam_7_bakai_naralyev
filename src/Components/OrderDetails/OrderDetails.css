@@ -8,5 +8,21 @@
 }
 
 .empty {
-    font-size: 19px;
+    margin-right: 10px;
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
+}
+
+.table {
+    width: 210px;
+    text-align: center;
+}
+
+.colum {
+    width: 60px;
+}
+.summ {
+    font-size: 20px;
+    float: right;
 }
