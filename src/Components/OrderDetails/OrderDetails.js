@@ -6,18 +6,24 @@ import OrderFood from './OrderFood/OrderFood';
 class OrderDetails extends Component {
 
     render () {
-        if (this.props.basket === []) return (<p>Ваша корзина пустая.Кликните по еде в меню, чтобы добавить!</p>);
+        if (this.props.basket.length === 0) {
+            return (
+                <div className={"order_details"}>
+                    <h3>Корзина</h3>
+                    <p className={"empty"}>Ваша корзина пустая.Кликните по еде в меню, чтобы добавить!</p>
+                </div>);
+        }
         else {
             return (
-            <div className={"order_details"}>
-                <h3>Корзина</h3>
-                <table>
-                    <tbody>
+                <div className={"order_details"}>
+                    <h3>Корзина</h3>
+                    <table>
+                        <tbody>
                         <tr>
                             <th></th>
                             <th>Кол-во</th>
                             <th>Сумма</th>
-                          </tr>
+                        </tr>
                         {
                             Object.values(this.props.basket).map(
                                 (item, i) => {
@@ -37,12 +43,12 @@ class OrderDetails extends Component {
                         <tr className={"order_item"}>
                             <td>Всего: {this.props.total_price} с.</td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
-        );
-    }}
-
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+    }
 }
 
 export default OrderDetails;

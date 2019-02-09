@@ -10,11 +10,11 @@ class OrderFood extends Component {
                 <td>{this.props.count}</td>
                 <td>{this.props.price}</td>
                 <td>
-                    <button
+                    <span
+                        className={"fas fa-trash-alt"}
                         onClick={this.props.onDelete}
                     >
-                    X
-                    </button></td>
+                    </span></td>
             </tr>
         );
     }
