@@ -78,12 +78,9 @@ class App extends Component {
 
 
   removeOrDelete = (id, basket) => {
-    console.log(id);
     let foodId = basket.findIndex(orderFood => {
             return orderFood.id === id;
         });
-    console.log(foodId);
-    console.log(basket[foodId]);
     if (basket[foodId].count > 1) {
       let food = basket[foodId];
       food.count = food.count - 1;

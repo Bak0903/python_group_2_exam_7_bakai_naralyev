@@ -19,9 +19,7 @@ class AddItems extends Component {
                                         name={item.name}
                                         price={item.price}
                                         className={item.className}
-                                        onClickEvent={() => {
-                                            return this.props.onAddFood(i, "add")
-                                        }}
+                                        onClickEvent={() => {return this.props.onAddFood(i, "add")}}
                                     />
                                 );
                             }

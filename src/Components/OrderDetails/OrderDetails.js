@@ -21,8 +21,8 @@ class OrderDetails extends Component {
                         <tbody>
                         <tr>
                             <th></th>
-                            <th className={"colum"}><span>Кол-во</span></th>
-                            <th className={"colum"}>Сумма</th>
+                            <th className={"column"}><span>Кол-во</span></th>
+                            <th className={"column"}>Сумма</th>
                         </tr>
                         {
                             Object.values(this.props.basket).map(
@@ -42,7 +42,7 @@ class OrderDetails extends Component {
                         </tbody>
                     </table>
                     <hr/>
-                    <span className={"summ"}>Всего: {this.props.total_price} с.</span>
+                    <span className={"sum"}>Всего: {this.props.total_price} с.</span>
                 </div>
             );
         }
