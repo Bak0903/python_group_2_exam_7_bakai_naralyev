@@ -1,0 +1,16 @@
+.add_items {
+    border-radius: 0 11px 11px 0;
+    padding: 10px;
+    min-height: 270px;
+    width: 400px;
+    background: green;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title {
+
+}
