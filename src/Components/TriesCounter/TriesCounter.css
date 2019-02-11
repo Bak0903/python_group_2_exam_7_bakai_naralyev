@@ -1,13 +1,13 @@
-.App {
-    padding: 20px 20px 30px 20px;
-    margin: 50px auto;
-    width: 324px;
+.counter {
     text-align: center;
+    font-size: 24px;
+    padding: 10px;
     background: #289CE9;
     background: -moz-linear-gradient(top, #289CE9 0%, #2388CA 50%, #144E74 100%);
     background: -webkit-linear-gradient(top, #289CE9 0%, #2388CA 50%, #144E74 100%);
     background: linear-gradient(to bottom, #289CE9 0%, #2388CA 50%, #144E74 100%);
-    border: 5px outset rgba(28,110,164,0.95);
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px 5px #000000;
+    color: white;
+    font-weight: bold;
+    border: 5px outset #1C6EA4;
+    border-radius: 10px 10px 10px 10px;
 }

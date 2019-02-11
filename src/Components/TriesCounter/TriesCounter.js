@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './TriesCounter.css';
 
 
 class TriesCounter extends Component {

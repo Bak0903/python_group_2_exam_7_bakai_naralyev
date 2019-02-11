@@ -1,0 +1,10 @@
+.field {
+    width: 324px;
+    margin: 0 auto;
+    padding: 3px;
+    background: #FFFFFF;
+    background: -moz-radial-gradient(center, #FFFFFF 0%, #C3C3C3 59%, #797979 100%);
+    background: -webkit-radial-gradient(center, #FFFFFF 0%, #C3C3C3 59%, #797979 100%);
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #C3C3C3 59%, #797979 100%);
+    border-radius: 5px;
+}
