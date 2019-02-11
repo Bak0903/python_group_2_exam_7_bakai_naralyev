@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Fields from './Components/Field/Field';
+import ResetButton from './Components/ResetButton/ResetButton';
+import TriesCounter from './Components/TriesCounter/TriesCounter';
 
 class App extends Component {
     constructor(props) {
@@ -14,14 +16,14 @@ class App extends Component {
 
     generateBoxes = () => {
       let boxes = [];
-      let fieldSize = 36;
       let randomBox = Math.floor(Math.random() * 35);
-      for (let i = 0; i < fieldSize; i++) {
+      for (let i = 0; i < 36; i++) {
         if (i === randomBox) {
           boxes.push(
             {
                 boxId: i,
-                boxClass: "clothed box secret",
+                boxClass: "clothed box",
+                hasItem: true,
                 boxIsDisabled: false
             }
           )
@@ -30,48 +32,14 @@ class App extends Component {
           boxes.push(
             {
                 boxId: i,
-                boxClass: "clothed box Empty",
+                boxClass: "clothed box",
+                hasItem: false,
                 boxIsDisabled: false
             }
           );
         }
       }
       return boxes;
-    };
-
-    openBox = (id) => {
-        let boxes = this.state.boxes;
-        let currentBox = boxes[id];
-        let clicks = this.state.clicks;
-        currentBox = this.checkBox(currentBox);
-        boxes[id] = currentBox;
-        clicks = clicks + 1;
-        this.setState({ ...this.state,
-            boxes,
-            clicks
-        });
-    };
-
-    disableAllBoxes = (boxes) => {
-        for (let i = 0; i < boxes.length; i++) {
-            boxes[i].boxIsDisabled = true;
-        }
-        this.setState({ ...this.state,
-            boxes
-        });
-    };
-
-    checkBox = (ceckingBox) => {
-        let currrentField = this.state.boxes;
-        if (ceckingBox.boxClass === "clothed box secret") {
-            ceckingBox.boxClass = "NotEmpty box";
-            this.disableAllBoxes(currrentField);
-        }
-        else {
-            ceckingBox.boxClass = "open box";
-        }
-        ceckingBox.boxIsDisabled = true;
-        return ceckingBox;
     };
 
     resetGame = () => {
@@ -83,6 +51,41 @@ class App extends Component {
         });
     };
 
+
+    openBox = (id) => {
+        let boxes = this.state.boxes;
+        let currentBox = boxes[id];
+        let clicks = this.state.clicks;
+        currentBox = this.checkBox(currentBox, boxes);
+        boxes[id] = currentBox;
+        clicks = clicks + 1;
+        this.setState({ ...this.state,
+            boxes,
+            clicks
+        });
+    };
+
+    checkBox = (checkingBox, currentField) => {
+        if (checkingBox.hasItem) {
+            checkingBox.boxClass = "NotEmpty box";
+            this.disableAllBoxes(currentField);
+        }
+        else {
+            checkingBox.boxClass = "open box";
+            checkingBox.boxIsDisabled = true;
+        }
+        return checkingBox;
+    };
+
+    disableAllBoxes = (boxes) => {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].boxIsDisabled = true;
+        }
+        this.setState({ ...this.state,
+            boxes
+        });
+    };
+
   render() {
     return (
       <div className="App">
@@ -90,11 +93,12 @@ class App extends Component {
           boxes = {this.state.boxes}
           onBox = {this.openBox}
         />
-        <button
-            onClick={this.resetGame}
-        >
-            Reset
-        </button>
+        <TriesCounter
+            count = {this.state.clicks}
+        />
+        <ResetButton
+            onReset = {this.resetGame}
+        />
       </div>
     );
   }
